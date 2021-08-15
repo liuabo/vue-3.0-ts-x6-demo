@@ -1,4 +1,4 @@
-import { Graph, Addon, Shape } from '@antv/x6'
+import { Graph, Addon, Shape, Markup } from '@antv/x6'
 import './shape'
 
 export default class FlowGraph {
@@ -83,12 +83,13 @@ export default class FlowGraph {
           },
         },
       },
-      resizing: true,
-      rotating: true,
+      resizing: false, // 大小
+      rotating: false, // 旋转
       selecting: {
         enabled: true,
         rubberband: true,
         showNodeSelectionBox: true,
+        className: 'my-selecting',
       },
       snapline: true,
       keyboard: true,
@@ -117,14 +118,14 @@ export default class FlowGraph {
       stencilGraphHeight: document.body.offsetHeight - 105,
       layoutOptions: {
         columns: 1,
-        columnWidth: 75,
+        columnWidth: 80,
         rowHeight: 90,
         marginY: 20,
       },
-      getDropNode(node) {
-        const size = node.size()
-        return node.clone().size(size.width * 3, size.height * 3)
-      },
+      // getDropNode(node) {
+      //   const size = node.size()
+      //   return node.clone().size(size.width * 3, size.height * 3)
+      // },
     })
     const stencilContainer = document.querySelector('#stencil')
     if (stencilContainer) {
@@ -134,106 +135,279 @@ export default class FlowGraph {
 
   private static initShape() {
     const { graph } = this
+    // const r1 = graph.createNode({
+    //   shape: 'flow-chart-rect',
+    //   attrs: {
+    //     style: {
+    //       width: 80,
+    //       height: 42,
+    //     },
+    //     body: {
+    //       rx: 24,
+    //       ry: 24
+    //     },
+    //     text: {
+    //       textWrap: {
+    //         text: '起始节点'
+    //       }
+    //     }
+    //   }
+    // })
+    // const r2 = graph.createNode({
+    //   shape: 'flow-chart-rect',
+    //   attrs: {
+    //     text: {
+    //       textWrap: {
+    //         text: '流程节点'
+    //       }
+    //     }
+    //   }
+    // })
+    // const r3 = graph.createNode({
+    //   shape: 'flow-chart-rect',
+    //   width: 52,
+    //   height: 52,
+    //   angle: 45,
+    //   attrs: {
+    //     'edit-text': {
+    //       style: {
+    //         transform: 'rotate(-45deg)'
+    //       }
+    //     },
+    //     text: {
+    //       textWrap: {
+    //         text: '判断节点'
+    //       },
+    //       transform: 'rotate(-45deg)'
+    //     }
+    //   },
+    //   ports: {
+    //     groups: {
+    //       top: {
+    //         position: {
+    //           name: 'top',
+    //           args: {
+    //             dx: -26
+    //           }
+    //         }
+    //       },
+    //       right: {
+    //         position: {
+    //           name: 'right',
+    //           args: {
+    //             dy: -26
+    //           }
+    //         }
+    //       },
+    //       bottom: {
+    //         position: {
+    //           name: 'bottom',
+    //           args: {
+    //             dx: 26
+    //           }
+    //         }
+    //       },
+    //       left: {
+    //         position: {
+    //           name: 'left',
+    //           args: {
+    //             dy: 26
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // })
+    // const r4 = graph.createNode({
+    //   shape: 'flow-chart-rect',
+    //   width: 70,
+    //   height: 70,
+    //   attrs: {
+    //     body: {
+    //       rx: 35,
+    //       ry: 35
+    //     },
+    //     text: {
+    //       textWrap: {
+    //         text: '链接节点'
+    //       }
+    //     }
+    //   }
+    // })
     const r1 = graph.createNode({
-      shape: 'flow-chart-rect',
-      attrs: {
-        style: {
-          width: 80,
-          height: 42,
-        },
-        body: {
-          rx: 24,
-          ry: 24
-        },
-        text: {
-          textWrap: {
-            text: '起始节点'
-          }
-        }
-      }
-    })
-    const r2 = graph.createNode({
-      shape: 'flow-chart-rect',
-      attrs: {
-        text: {
-          textWrap: {
-            text: '流程节点'
-          }
-        }
-      }
-    })
-    const r3 = graph.createNode({
-      shape: 'flow-chart-rect',
-      width: 52,
-      height: 52,
-      angle: 45,
-      attrs: {
-        'edit-text': {
-          style: {
-            transform: 'rotate(-45deg)'
-          }
-        },
-        text: {
-          textWrap: {
-            text: '判断节点'
-          },
-          transform: 'rotate(-45deg)'
-        }
-      },
+      width: 80,
+      height: 80,
+      shape: 'react-shape',
+      component: 'flow-chart-rect',
+      label: 'Hello',
+      // portMarkup: [Markup.getForeignObjectMarkup()],
       ports: {
         groups: {
           top: {
-            position: {
-              name: 'top',
-              args: {
-                dx: -26
-              }
-            }
+            position: 'top',
+            attrs: {
+              circle: {
+                r: 4,
+                magnet: true,
+                stroke: '#D06269',
+                strokeWidth: 1,
+                fill: '#fff',
+                style: {
+                  visibility: 'hidden',
+                },
+              },
+            },
           },
           right: {
-            position: {
-              name: 'right',
-              args: {
-                dy: -26
-              }
-            }
+            position: 'right',
+            attrs: {
+              circle: {
+                r: 4,
+                magnet: true,
+                stroke: '#D06269',
+                strokeWidth: 1,
+                fill: '#fff',
+                style: {
+                  visibility: 'hidden',
+                },
+              },
+            },
           },
           bottom: {
-            position: {
-              name: 'bottom',
-              args: {
-                dx: 26
-              }
-            }
+            position: 'bottom',
+            attrs: {
+              circle: {
+                r: 4,
+                magnet: true,
+                stroke: '#D06269',
+                strokeWidth: 1,
+                fill: '#fff',
+                style: {
+                  visibility: 'hidden',
+                },
+              },
+            },
           },
           left: {
-            position: {
-              name: 'left',
-              args: {
-                dy: 26
-              }
-            }
-          }
-        }
-      }
-    })
-    const r4 = graph.createNode({
-      shape: 'flow-chart-rect',
-      width: 70,
-      height: 70,
-      attrs: {
-        body: {
-          rx: 35,
-          ry: 35
+            position: 'left',
+            attrs: {
+              circle: {
+                r: 4,
+                magnet: true,
+                stroke: '#D06269',
+                strokeWidth: 1,
+                fill: '#fff',
+                style: {
+                  visibility: 'hidden',
+                },
+              },
+            },
+          },
         },
-        text: {
-          textWrap: {
-            text: '链接节点'
-          }
-        }
-      }
+        items: [
+          {
+            group: 'top',
+          },
+          {
+            group: 'right',
+          },
+          {
+            group: 'bottom',
+          },
+          {
+            group: 'left',
+          },
+        ],
+      },
     })
-    this.stencil.load([r1, r2, r3, r4])
+    const r2 = graph.createNode({
+      width: 80,
+      height: 80,
+      shape: 'react-shape',
+      component: 'flow-judge-rect',
+      label: 'Hello',
+      // portMarkup: [Markup.getForeignObjectMarkup()],
+      ports: {
+        groups: {
+          top: {
+            position: 'top',
+            attrs: {
+              circle: {
+                r: 4,
+                magnet: true,
+                stroke: '#D06269',
+                strokeWidth: 1,
+                fill: '#fff',
+                style: {
+                  visibility: 'hidden',
+                },
+              },
+            },
+          },
+          right: {
+            position: 'right',
+            attrs: {
+              circle: {
+                r: 4,
+                magnet: true,
+                stroke: '#D06269',
+                strokeWidth: 1,
+                fill: '#fff',
+                style: {
+                  visibility: 'hidden',
+                },
+              },
+            },
+          },
+          bottom: {
+            position: 'bottom',
+            attrs: {
+              circle: {
+                r: 4,
+                magnet: true,
+                stroke: '#D06269',
+                strokeWidth: 1,
+                fill: '#fff',
+                style: {
+                  visibility: 'hidden',
+                },
+              },
+            },
+          },
+          left: {
+            position: 'left',
+            attrs: {
+              circle: {
+                r: 4,
+                magnet: true,
+                stroke: '#D06269',
+                strokeWidth: 1,
+                fill: '#fff',
+                style: {
+                  visibility: 'hidden',
+                },
+              },
+            },
+          },
+        },
+        items: [
+          {
+            group: 'top',
+          },
+          {
+            group: 'right',
+          },
+          {
+            group: 'bottom',
+          },
+          {
+            group: 'left',
+          },
+        ],
+      },
+    })
+
+    this.stencil.load([r1, r2])
   }
 
   private static showPorts(ports: NodeListOf<SVGElement>, show: boolean) {

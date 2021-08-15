@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import FlowGraph from "./pages/Graph";
 import './App.less';
+import './reset.less'
 
 const App = () => {
     const getContainerSize = () => {

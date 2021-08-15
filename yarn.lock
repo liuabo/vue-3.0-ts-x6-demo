@@ -36,6 +36,11 @@
     lodash "^4.17.21"
     resize-observer-polyfill "^1.5.0"
 
+"@antv/x6-react-shape@^1.4.5":
+  version "1.4.5"
+  resolved "https://registry.nlark.com/@antv/x6-react-shape/download/@antv/x6-react-shape-1.4.5.tgz#3a5f50d5e88397d7c4d68521cfc3d201d0b1b2a8"
+  integrity sha1-Ol9Q1eiDl9fE1oUhz8PSAdCxsqg=
+
 "@antv/x6@^1.25.3":
   version "1.25.3"
   resolved "https://registry.nlark.com/@antv/x6/download/@antv/x6-1.25.3.tgz?cache=0&sync_timestamp=1628238263060&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40antv%2Fx6%2Fdownload%2F%40antv%2Fx6-1.25.3.tgz#17008348d8dab749d7efedcdef9598d7de1f3f92"

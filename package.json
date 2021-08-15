@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@antv/x6": "^1.25.3",
+    "@antv/x6-react-shape": "^1.4.5",
     "@craco/craco": "^6.2.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
