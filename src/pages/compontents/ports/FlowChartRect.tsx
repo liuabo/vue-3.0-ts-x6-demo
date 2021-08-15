@@ -1,5 +1,6 @@
 import { useState ,useEffect } from 'react'
 import './index.less'
+import img from '../../../assets/162356646.jpg'
 
 const FlowChartRect = (props: any) => {
     let [name, setName] = useState(null)
@@ -9,7 +10,8 @@ const FlowChartRect = (props: any) => {
     }, [])
     return (
         <div className='flow-chart-node'>
-            {name}
+            {/* <div className='flow-chart-node-title'>{name}</div> */}
+            <img width='80' height='80' src={img} alt="" />
         </div>
     )
 }

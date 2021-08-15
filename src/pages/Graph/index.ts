@@ -119,7 +119,7 @@ export default class FlowGraph {
       layoutOptions: {
         columns: 1,
         columnWidth: 80,
-        rowHeight: 90,
+        rowHeight: 150,
         marginY: 20,
       },
       // getDropNode(node) {
@@ -239,8 +239,15 @@ export default class FlowGraph {
       height: 80,
       shape: 'react-shape',
       component: 'flow-chart-rect',
-      label: 'Hello',
-      // portMarkup: [Markup.getForeignObjectMarkup()],
+      attrs: {
+        body: {
+        },
+        text: { // 节点名称
+          textWrap: {
+            text: '通用节点'
+          },
+        }
+      },
       ports: {
         groups: {
           top: {
@@ -321,16 +328,36 @@ export default class FlowGraph {
       },
     })
     const r2 = graph.createNode({
-      width: 80,
-      height: 80,
+      width: 65,
+      height: 65,
       shape: 'react-shape',
       component: 'flow-judge-rect',
       label: 'Hello',
-      // portMarkup: [Markup.getForeignObjectMarkup()],
+      angle: 45, // 旋转
+      attrs: {
+        body: {
+        },
+        'edit-text': {
+          style: {
+            transform: 'rotate(45deg)'
+          }
+        },
+        text: { // 节点名称
+          textWrap: {
+            text: '判断节点'
+          },
+          transform: 'rotate(-45deg)',
+        }
+      },
       ports: {
         groups: {
           top: {
-            position: 'top',
+            position: {
+              name: 'top',
+              args: {
+                dx: -32
+              }
+            },
             attrs: {
               circle: {
                 r: 4,
@@ -345,7 +372,13 @@ export default class FlowGraph {
             },
           },
           right: {
-            position: 'right',
+            position: {
+              name: 'right',
+              args: {
+                dy: -32,
+                dx: 0,
+              }
+            },
             attrs: {
               circle: {
                 r: 4,
@@ -360,7 +393,13 @@ export default class FlowGraph {
             },
           },
           bottom: {
-            position: 'bottom',
+            position: {
+              name: 'bottom',
+              args: {
+                dx: 32,
+                dy: 0
+              }
+            },
             attrs: {
               circle: {
                 r: 4,
@@ -375,7 +414,12 @@ export default class FlowGraph {
             },
           },
           left: {
-            position: 'left',
+            position: {
+              name: 'left',
+              args: {
+                dy: 32
+              }
+            },
             attrs: {
               circle: {
                 r: 4,

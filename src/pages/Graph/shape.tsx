@@ -1,6 +1,7 @@
 import { Graph } from '@antv/x6'
 import '@antv/x6-react-shape'
 import FlowChartRect from '../compontents/ports/FlowChartRect'
+import FlowChartDiamond from '../compontents/ports/FlowChartDiamond'
 
 const ports = {
   groups: {
@@ -91,6 +92,9 @@ let nodes = [
     value: 'flow-judge-rect'
   },
 ];
-nodes.forEach(item => {
-  Graph.registerReactComponent(item.value, <FlowChartRect text={item.label} />)
-})
+// nodes.forEach(item => {
+//   Graph.registerReactComponent(item.value, <FlowChartRect text={item.label} />)
+// })
+
+Graph.registerReactComponent('flow-chart-rect', <FlowChartRect text='通用节点' />)
+Graph.registerReactComponent('flow-judge-rect', <FlowChartDiamond text='判断节点' />)
